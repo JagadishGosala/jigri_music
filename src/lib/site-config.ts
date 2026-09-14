@@ -1,0 +1,47 @@
+/* ---------------------------------------------------------------------------
+ * SINGLE SOURCE OF TRUTH for every externally-owned value on the site.
+ * To go live, edit ONLY this file (plus .env.local). Nothing else needs to change.
+ * ------------------------------------------------------------------------- */
+
+export const siteConfig = {
+  name: 'Jigiri Music',
+  wordmark: 'JIGIRI MUSIC',
+  tagline: 'Folk, album and devotional music from the heart of the tradition.',
+  description:
+    'Jigiri Music — folk, album and devotional songs by Gendeti Suneel. Watch the latest music videos, read the lyrics, and follow what is coming next.',
+  url: 'https://jigirimusic.com',
+  owner: 'Gendeti Suneel',
+  copyrightHolder: 'Jigiri Music / Gendeti Suneel',
+  builtByCredit: 'Built by Jagadish',
+
+  youtube: {
+    handle: '@JigiriMusic',
+    channelUrl: 'https://www.youtube.com/@JigiriMusic',
+    // TODO: replace with the real UC... channel ID — see docs/next-steps.md §4.
+    // Read from env so it can be set on Vercel without a code change.
+    channelId: process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID || '',
+  },
+
+  contact: {
+    email: 'gendetisuneel@jigirimusic.com',
+  },
+
+  // TODO: replace placeholder URLs with the real handles when confirmed.
+  social: [
+    { name: 'Instagram', url: 'https://instagram.com/jigirimusic', icon: 'instagram' },
+    { name: 'Facebook', url: 'https://facebook.com/jigirimusic', icon: 'facebook' },
+    { name: 'Twitter / X', url: 'https://x.com/jigirimusic', icon: 'x' },
+    { name: 'Snapchat', url: 'https://snapchat.com/add/jigirimusic', icon: 'snapchat' },
+  ] as const,
+
+  nav: [
+    { label: 'Home', href: '/' },
+    { label: 'Music', href: '/music' },
+    { label: 'Events', href: '/events' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' },
+  ],
+} as const;
+
+export type SiteConfig = typeof siteConfig;

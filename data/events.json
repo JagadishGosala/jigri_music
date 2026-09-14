@@ -1,0 +1,31 @@
+[
+  {
+    "id": "event-001",
+    "title": "Jigiri Music — Channel Launch Live",
+    "date": "2026-08-20T18:30:00Z",
+    "location": "Ravindra Bharathi, Hyderabad",
+    "description": "The launch evening for the channel, with a live performance of the first three releases and a short set of traditional folk pieces.",
+    "createdAt": "2026-07-01T09:00:00Z",
+    "updatedAt": "2026-07-01T09:00:00Z"
+  },
+  {
+    "id": "event-002",
+    "title": "Folk Evening at the Cultural Centre",
+    "date": "2026-09-27T18:00:00Z",
+    "location": "Shilparamam, Madhapur",
+    "description": "An open-air evening of folk songs from across Telangana, with Jigiri Music performing a forty-minute set.",
+    "link": "https://www.youtube.com/@JigiriMusic",
+    "createdAt": "2026-08-05T09:00:00Z",
+    "updatedAt": "2026-08-05T09:00:00Z"
+  },
+  {
+    "id": "event-003",
+    "title": "Devotional Special — New Release Preview",
+    "date": "2026-10-18T17:00:00Z",
+    "location": "Online premiere on YouTube",
+    "description": "A first listen to the next devotional release, premiered live on the channel with the lyrics posted on the site the same evening.",
+    "link": "https://www.youtube.com/@JigiriMusic",
+    "createdAt": "2026-09-01T09:00:00Z",
+    "updatedAt": "2026-09-01T09:00:00Z"
+  }
+]

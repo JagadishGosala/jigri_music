@@ -1,0 +1,47 @@
+[
+  {
+    "id": "song-001",
+    "title": "Palle Baata",
+    "genre": "folk",
+    "youtubeVideoId": "JGM00000001",
+    "youtubeUrl": "https://youtu.be/JGM00000001",
+    "description": "A walking song for the road home — the first release from Jigiri Music.",
+    "lyrics": {
+      "original": "పల్లె బాట పిలుస్తోంది\nఎర్రమట్టి దారి వెంట\nగోధుమ పొలాల నడుమ\nనా ఊరు నన్ను పిలుస్తోంది\n\nసూరీడు దిగే వేళ\nగంటల చప్పుడు వినిపిస్తోంది\nఅమ్మ వంట పొగ లేస్తోంది\nఇల్లు చేరే వేళ ఐంది",
+      "transliteration": "Palle baata pilustondi\nErramatti daari venta\nGodhuma polaala naduma\nNaa ooru nannu pilustondi\n\nSooreedu dige vela\nGantala chappudu vinipistondi\nAmma vanta poga lestondi\nIllu chere vela aindi",
+      "translation": "The village road is calling me\nAlong the red-earth track\nThrough the fields of standing wheat\nMy home town is calling me\n\nAt the hour the sun goes down\nI can hear the temple bells\nThe smoke of my mother's cooking rises\nIt is time to go home"
+    },
+    "uploadedAt": "2026-06-12T09:00:00Z",
+    "updatedAt": "2026-06-12T09:00:00Z"
+  },
+  {
+    "id": "song-002",
+    "title": "Vennela Raatri",
+    "genre": "album",
+    "youtubeVideoId": "JGM00000002",
+    "youtubeUrl": "https://youtu.be/JGM00000002",
+    "description": "A moonlit love song, arranged for strings and a single flute.",
+    "lyrics": {
+      "original": "వెన్నెల రాత్రి నీ జ్ఞాపకం\nమెల్లగా వచ్చి కూర్చుంది\nమాట్లాడకుండా నా పక్కన\nతెల్లారే దాకా ఉంది\n\nనీవు లేని ఈ ఊరిలో\nప్రతి వీధి నిన్ను అడుగుతోంది\nనేను ఏమని చెప్పను\nనా గుండె నిన్నే వెతుకుతోంది",
+      "transliteration": "Vennela raatri nee gnaapakam\nMellagaa vachchi koorchundi\nMaatlaadakundaa naa pakkana\nTellaare daakaa undi\n\nNeevu leni ee oorilo\nPrati veedhi ninnu adugutondi\nNenu emani cheppanu\nNaa gunde ninne vetukutondi",
+      "translation": "On a moonlit night your memory\nCame quietly and sat down\nBeside me, saying nothing at all\nAnd stayed until the morning\n\nIn this town without you\nEvery street asks after you\nWhat answer am I supposed to give\nWhen my own heart is still searching"
+    },
+    "uploadedAt": "2026-07-28T09:00:00Z",
+    "updatedAt": "2026-07-28T09:00:00Z"
+  },
+  {
+    "id": "song-003",
+    "title": "Sri Ganesha Vandanam",
+    "genre": "devotional",
+    "youtubeVideoId": "JGM00000003",
+    "youtubeUrl": "https://youtu.be/JGM00000003",
+    "description": "An invocation recorded live with mridangam and nadaswaram.",
+    "lyrics": {
+      "original": "శ్రీ గణేశా నమో నమః\nవిఘ్నరాజా నమో నమః\nమోదక ప్రియా నమో నమః\nగౌరీ తనయా నమో నమః\n\nమొదటి పూజ నీకే\nమొదటి మాట నీ పేరే\nఅడ్డంకులు తొలగించు\nదారి చూపు మాకు",
+      "transliteration": "Sri Ganesha namo namah\nVighnaraaja namo namah\nModaka priyaa namo namah\nGauri tanayaa namo namah\n\nModati pooja neeke\nModati maata nee peere\nAddankulu tolaginchu\nDaari choopu maaku",
+      "translation": "Sri Ganesha, we bow to you\nLord who removes obstacles, we bow to you\nBeloved of the modaka, we bow to you\nSon of Gauri, we bow to you\n\nThe first offering is yours\nThe first word spoken is your name\nClear the obstacles from our path\nAnd show us the way"
+    },
+    "uploadedAt": "2026-09-02T09:00:00Z",
+    "updatedAt": "2026-09-02T09:00:00Z"
+  }
+]

@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+
+    /* Typeface tokens. Tailwind's font-display / font-sans utilities read these.
+       'Noto Sans Telugu' is appended so original-language lyrics render
+       correctly in both stacks. */
+    --font-display: 'Cormorant Garamond', 'Noto Sans Telugu', Georgia, 'Times New Roman', serif;
+    --font-sans: 'DM Sans', 'Noto Sans Telugu', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-brand-bg text-brand-text font-sans text-body;
+  }
+
+  ::selection {
+    @apply bg-brand-accent-soft text-brand-text;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-accent ring-offset-2 ring-offset-brand-bg rounded-sm;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-brand-text;
+  }
+}
+
+@layer components {
+  /* Scroll-reveal: elements start hidden and are revealed by IntersectionObserver
+     (see src/components/Reveal.tsx). Falls back to visible without JS. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Long-form article styling for blog posts. */
+  .prose-jigiri {
+    @apply text-brand-text/90 text-body-lg;
+  }
+  .prose-jigiri h2 {
+    @apply font-display text-display-sm mt-12 mb-4;
+  }
+  .prose-jigiri h3 {
+    @apply font-display text-xl mt-9 mb-3;
+  }
+  .prose-jigiri p {
+    @apply mb-6;
+  }
+  .prose-jigiri ul {
+    @apply mb-6 space-y-2 pl-5 list-disc marker:text-brand-accent;
+  }
+  .prose-jigiri ol {
+    @apply mb-6 space-y-2 pl-5 list-decimal marker:text-brand-accent;
+  }
+  .prose-jigiri a {
+    @apply text-brand-accent underline underline-offset-4 decoration-brand-accent/40 hover:decoration-brand-accent transition-colors;
+  }
+  .prose-jigiri strong {
+    @apply font-semibold text-brand-text;
+  }
+  .prose-jigiri blockquote {
+    @apply border-l-2 border-brand-accent pl-6 italic text-brand-muted my-8;
+  }
+  .prose-jigiri hr {
+    @apply border-brand-border my-12;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
