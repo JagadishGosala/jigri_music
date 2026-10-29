@@ -1,11 +1,14 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { siteConfig } from '@/lib/site-config';
 import { cn } from '@/lib/cn';
 
 /**
- * TODO: replace with real asset — when a logo file arrives, swap the <span>
- * below for an <Image src="/logo.svg" .../>. Nothing else needs to change:
- * every part of the site renders the wordmark through this one component.
+ * Real brand asset, live at `public/logo.png`. The icon + wordmark are baked
+ * into the one image, so it renders decoratively (empty alt) with the site
+ * name kept in the DOM as a visually-hidden label — every usage keeps an
+ * accessible name, and heading text content is unchanged for 'h1'.
+ * Every part of the site renders the logo through this one component.
  */
 export default function Wordmark({
   className,
@@ -20,9 +23,21 @@ export default function Wordmark({
     className ?? 'text-lg',
   );
 
-  if (as === 'h1') return <h1 className={classes}>{siteConfig.wordmark}</h1>;
+  const mark = (
+    <span className="inline-flex items-center">
+      <Image
+        src="/logo.png"
+        alt=""
+        aria-hidden="true"
+        width={512}
+        height={512}
+        className={cn('w-auto object-contain', as === 'h1' ? 'h-24 sm:h-32' : 'h-8 sm:h-9')}
+      />
+      <span className="sr-only">{siteConfig.wordmark}</span>
+    </span>
+  );
 
-  const mark = <span className={classes}>{siteConfig.wordmark}</span>;
+  if (as === 'h1') return <h1 className={classes}>{mark}</h1>;
 
   if (as === 'text') return mark;
 

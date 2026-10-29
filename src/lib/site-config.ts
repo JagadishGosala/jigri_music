@@ -26,11 +26,13 @@ export const siteConfig = {
     email: 'gendetisuneel@jigirimusic.com',
   },
 
-  // TODO: replace placeholder URLs with the real handles when confirmed.
+  // Instagram, Facebook and X confirmed 2026-10-29 — real handles below.
+  // Snapchat is still a guessed URL.
+  // TODO: replace the Snapchat URL with the real handle once confirmed.
   social: [
-    { name: 'Instagram', url: 'https://instagram.com/jigirimusic', icon: 'instagram' },
-    { name: 'Facebook', url: 'https://facebook.com/jigirimusic', icon: 'facebook' },
-    { name: 'Twitter / X', url: 'https://x.com/jigirimusic', icon: 'x' },
+    { name: 'Instagram', url: 'https://www.instagram.com/jigirimusic/', icon: 'instagram' },
+    { name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61591520053838', icon: 'facebook' },
+    { name: 'Twitter / X', url: 'https://x.com/JigiriMusic', icon: 'x' },
     { name: 'Snapchat', url: 'https://snapchat.com/add/jigirimusic', icon: 'snapchat' },
   ] as const,
 

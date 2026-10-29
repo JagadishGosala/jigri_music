@@ -27,5 +27,15 @@
     "link": "https://www.youtube.com/@JigiriMusic",
     "createdAt": "2026-09-01T09:00:00Z",
     "updatedAt": "2026-09-01T09:00:00Z"
+  },
+  {
+    "id": "event-004",
+    "title": "New Short Is Up — Full Video Coming Soon",
+    "date": "2026-10-29T16:41:00Z",
+    "location": "YouTube Shorts",
+    "description": "A new short just went up on the channel as a teaser — the full song video is on its way.",
+    "link": "https://www.youtube.com/shorts/5WLjoaYfrvM",
+    "createdAt": "2026-10-29T16:41:00Z",
+    "updatedAt": "2026-10-29T16:41:00Z"
   }
 ]

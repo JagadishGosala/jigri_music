@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import Container from '@/components/Container';
 import Reveal from '@/components/Reveal';
@@ -49,9 +50,17 @@ export default async function HomePage() {
             <p className="text-label uppercase text-brand-surface/70">
               {siteConfig.youtube.handle}
             </p>
-            {/* TODO: replace with real asset — swap this wordmark for the logo. */}
-            <h1 className="mt-6 font-display text-display-xl font-semibold uppercase tracking-[0.12em] text-brand-surface">
-              {siteConfig.wordmark}
+            <h1 className="mt-6">
+              <Image
+                src="/logo.png"
+                alt=""
+                aria-hidden="true"
+                width={512}
+                height={512}
+                priority
+                className="h-28 w-auto object-contain sm:h-36"
+              />
+              <span className="sr-only">{siteConfig.wordmark}</span>
             </h1>
             <p className="mt-7 max-w-xl text-body-lg text-brand-surface/85">
               {siteConfig.tagline}

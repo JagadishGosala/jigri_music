@@ -53,7 +53,6 @@ test('no hardcoded hex colours in component or page files', () => {
 
 test('every placeholder asset carries a TODO marker', () => {
   const placeholderFiles = [
-    'src/components/Wordmark.tsx',
     'src/components/PlaceholderVisual.tsx',
     'src/app/page.tsx',
     'src/app/about/page.tsx',

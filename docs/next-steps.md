@@ -116,9 +116,11 @@ social: [
 ]
 ```
 
-They currently point at plausible-looking placeholders. The footer, the About
-page and the Contact page all read from this one array, so changing it here
-updates every appearance.
+**Done 2026-10-29** for Instagram, Facebook and X — real URLs confirmed and
+in place. Snapchat is still the placeholder guess.
+
+The footer, the About page and the Contact page all read from this one
+array, so changing it here updates every appearance.
 
 To drop a platform, delete its entry. To add one, add an entry and map its icon
 in `src/components/SocialLinks.tsx`.
@@ -127,12 +129,10 @@ in `src/components/SocialLinks.tsx`.
 
 ## 7. Logo & brand assets
 
-No re-development needed for any of these.
-
 | Asset | What to do |
 |---|---|
-| **Logo** | `src/components/Wordmark.tsx` — replace the `<span>` with `<Image src="/logo.svg" .../>`. Used by the navbar, footer, hero and About page, so one edit updates all four. |
-| **Favicon** | Replace `public/favicon.svg` (currently a "JM" monogram). Keep the filename. |
+| **Logo** | **Done 2026-10-29.** Real file at `public/logo.png`, wired into `src/components/Wordmark.tsx` (navbar, footer, About page) and the home hero (`src/app/page.tsx`) — one edit updated all four. |
+| **Favicon** | Still the placeholder — `public/favicon.svg` (a "JM" monogram). Replace it with a cropped/simplified version of `public/logo.png` when ready; keep the filename, or update `icons.icon` in `src/app/layout.tsx` if it changes. |
 | **Artist photos** | `src/components/PlaceholderVisual.tsx` — replace the gradient with an `<Image>`. |
 | **Home hero image** | `src/app/page.tsx`, the `{/* TODO */}` block at the top of the hero section — drop an `<Image fill>` behind the existing gradient overlay. |
 | **Brand colours** | `tailwind.config.ts` → `theme.extend.colors`. Six hex values, and the whole site re-skins. |
