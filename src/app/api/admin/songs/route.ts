@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { requireAdmin, ADMIN_HEADERS } from '@/lib/auth';
 import { getSongs, saveSongs, nextSongId, extractVideoId, isGenre, watchUrl } from '@/lib/songs';
 import { normaliseLyrics, Song } from '@/lib/types';
@@ -83,6 +84,12 @@ export async function POST(req: NextRequest) {
       { status: 500, headers: ADMIN_HEADERS },
     );
   }
+
+  // The home and music pages are ISR-cached (revalidate = 3600) — without
+  // this, a new upload wouldn't actually appear on the public site for up
+  // to an hour.
+  revalidatePath('/');
+  revalidatePath('/music');
 
   return NextResponse.json({ ok: true, song }, { status: 201, headers: ADMIN_HEADERS });
 }

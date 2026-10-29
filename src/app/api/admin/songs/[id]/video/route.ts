@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { requireAdmin, ADMIN_HEADERS } from '@/lib/auth';
 import { getSongs, saveSongs, extractVideoId, watchUrl } from '@/lib/songs';
 
@@ -49,6 +50,9 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   } catch (err) {
     return NextResponse.json({ error: 'Could not save. ' + (err as Error).message }, { status: 500, headers: ADMIN_HEADERS });
   }
+
+  revalidatePath('/');
+  revalidatePath('/music');
 
   return NextResponse.json({ ok: true, song: songs[index] }, { headers: ADMIN_HEADERS });
 }

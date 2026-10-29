@@ -1,10 +1,52 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, APIRequestContext } from '@playwright/test';
 import { siteConfig } from '../src/lib/site-config';
 
 /* ---------------------------------------------------------------------------
  * Quality gates G1–G9 from the Master Task List.
  * Every test runs in both the `desktop` (1280px) and `mobile` (375px) projects.
  * ------------------------------------------------------------------------- */
+
+const ADMIN_SECRET = process.env.ADMIN_SECRET ?? 'dev-only-secret-2f8a41c9b7e34d0a';
+
+function randomVideoId(): string {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let id = '';
+  for (let i = 0; i < 11; i++) id += chars[Math.floor(Math.random() * chars.length)];
+  return id;
+}
+
+/**
+ * The music/video tests below need at least one real song to exercise the
+ * player and lyrics UI against. Production ships with an empty catalogue
+ * (no fake placeholder videos), so each test seeds its own fixture song
+ * through the real admin API rather than relying on static seed data.
+ *
+ * The dev store is a flat JSON file with no locking, so a concurrent write
+ * from another parallel test (desktop/mobile run at once) can occasionally
+ * lose this one in a read-modify-write race. Verify it landed and retry if
+ * a race ate it, rather than trusting a single write.
+ */
+async function seedSong(request: APIRequestContext, genre: 'folk' | 'album' | 'devotional' = 'devotional') {
+  const headers = { Authorization: `Bearer ${ADMIN_SECRET}` };
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const created = await request.post('/api/admin/songs', {
+      headers,
+      data: {
+        title: 'E2E Fixture Song',
+        genre,
+        youtubeVideoId: randomVideoId(),
+        lyrics: { original: 'Fixture original lyrics.', translation: 'Fixture translated lyrics.' },
+      },
+    });
+    if (!created.ok()) throw new Error(`Failed to seed fixture song: ${created.status()} ${await created.text()}`);
+    const { song } = await created.json();
+
+    const check = await request.get('/api/admin/songs', { headers });
+    const { songs } = await check.json();
+    if (songs.some((s: { id: string }) => s.id === song.id)) return;
+  }
+  throw new Error('Could not get a seeded fixture song to stick after 5 attempts (store race).');
+}
 
 test.describe('Public site', () => {
   // G1 — Home page hero visible
@@ -29,7 +71,8 @@ test.describe('Public site', () => {
   });
 
   // G3 — Video iframes present on Music page
-  test('G3: music page exposes video players and lyrics', async ({ page }) => {
+  test('G3: music page exposes video players and lyrics', async ({ page, request }) => {
+    await seedSong(request);
     await page.goto('/music');
 
     // The featured release renders a lazy embed that mounts a real iframe on click.
@@ -51,7 +94,8 @@ test.describe('Public site', () => {
     await expect(modal).toBeHidden();
   });
 
-  test('G3b: genre filter narrows the grid', async ({ page }) => {
+  test('G3b: genre filter narrows the grid', async ({ page, request }) => {
+    await seedSong(request, 'devotional');
     await page.goto('/music');
     const total = await page.getByTestId('video-card').count();
     await page.getByTestId('genre-filter').getByRole('tab', { name: /^Devotional/ }).click();

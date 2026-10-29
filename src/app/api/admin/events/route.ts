@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { requireAdmin, ADMIN_HEADERS } from '@/lib/auth';
 import { getEvents, saveEvents, nextEventId } from '@/lib/events';
 import { JigiriEvent } from '@/lib/types';
@@ -63,6 +64,11 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     return NextResponse.json({ error: 'Could not save. ' + (err as Error).message }, { status: 500, headers: ADMIN_HEADERS });
   }
+
+  // The home and events pages are ISR-cached (revalidate = 3600) — without
+  // this, a new announcement wouldn't actually appear for up to an hour.
+  revalidatePath('/');
+  revalidatePath('/events');
 
   return NextResponse.json({ ok: true, event }, { status: 201, headers: ADMIN_HEADERS });
 }

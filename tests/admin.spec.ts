@@ -57,24 +57,36 @@ test.describe('Ghost admin endpoint', () => {
 
     const body = await res.json();
     expect(body.ok).toBe(true);
+    // Production ships with an empty catalogue until real songs are uploaded,
+    // so this only checks the shape of the response, not a minimum count.
     expect(Array.isArray(body.songs)).toBe(true);
-    expect(body.songs.length).toBeGreaterThan(0);
     expect(Array.isArray(body.events)).toBe(true);
     expect(res.headers()['cache-control']).toContain('no-store');
   });
 
-  test('G11b: listing songs returns the seeded catalogue with lyrics', async ({ request }) => {
+  test('G11b: a created song appears in the list with normalised lyrics', async ({ request }) => {
+    const videoId = 'TESTvid' + Math.random().toString(36).slice(2, 6);
+    const created = await request.post('/api/admin/songs', {
+      headers: AUTH,
+      data: {
+        title: 'Admin Listing Check',
+        genre: 'folk',
+        youtubeVideoId: videoId,
+        lyrics: { original: 'Original text', translation: 'Translated text' },
+      },
+    });
+    expect(created.status()).toBe(201);
+    const { song } = await created.json();
+
     const res = await request.get('/api/admin/songs', { headers: AUTH });
     expect(res.status()).toBe(200);
-
     const { songs } = await res.json();
-    expect(songs.length).toBeGreaterThanOrEqual(3);
 
-    const song = songs.find((s: { id: string }) => s.id === 'song-001');
-    expect(song).toBeTruthy();
-    expect(song.lyrics.original).toBeTruthy();
-    expect(song.lyrics.translation).toBeTruthy();
-    expect(['folk', 'album', 'devotional']).toContain(song.genre);
+    const found = songs.find((s: { id: string }) => s.id === song.id);
+    expect(found).toBeTruthy();
+    expect(found.lyrics.original).toBe('Original text');
+    expect(found.lyrics.translation).toBe('Translated text');
+    expect(['folk', 'album', 'devotional']).toContain(found.genre);
   });
 
   test('G11c: input validation rejects bad payloads with 400', async ({ request }) => {
